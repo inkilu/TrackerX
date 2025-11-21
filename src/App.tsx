@@ -1,12 +1,20 @@
-import { useState } from 'react'
 import './App.css'
+import ActionButton from './components/ActionButton/ActionButton'
+import MainCard from './components/Card/MainCard'
 import Topbar from './components/Topbar/Topbar'
 
 function App() {
 
   return (
     <>
-      <Topbar/>
+      <div className='wrapper'>
+        <Topbar />
+        <MainCard />
+      </div>
+      <div>
+---
+      </div>
+      <ActionButton />
     </>
   )
 }

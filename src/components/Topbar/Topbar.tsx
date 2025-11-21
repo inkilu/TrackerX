@@ -5,7 +5,6 @@ const Topbar = () => {
       style={{ position: 'fixed', boxSizing: 'border-box', width: '100%', top: 0, left: 0, right: 0, padding: '12px', zIndex: 1000,background:'transparent' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'end', fontWeight: 'bold', fontSize: '1.7rem' }}>
-          {/* <img src={Logo} className='main-header-logo' /> */}
           <span style={{color:'white'}}>
             TrackerX
           </span>

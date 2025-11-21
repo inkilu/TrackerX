@@ -2,6 +2,10 @@ body {
   font-family: 'Roboto', sans-serif;
   padding: 0;
   margin: 0;
+  /* background-image: url('./assets/galaxy.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 10% 50% ; */
   background-color: #121212 ;
 }
 
@@ -14,7 +18,7 @@ body {
 
 .wrapper {
   /* gradient applied once here */
-  background: linear-gradient(140deg, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
+  background: linear-gradient(140deg, rgb(184, 46, 252) 0%, rgb(41, 75, 244) 100%);
   background-attachment: fixed; /* helps keep the gradient visually stable */
   padding-top: 64px; /* reserve space for fixed topbar height */
   border-bottom-left-radius: 20px;

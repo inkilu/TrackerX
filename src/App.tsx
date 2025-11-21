@@ -1,9 +1,13 @@
-import './App.css'
+import { useState } from 'react'
 import ActionButton from './components/ActionButton/ActionButton'
+import AddSubscription from './components/AddSubscriprion/AddSubscription'
 import MainCard from './components/Card/MainCard'
 import Topbar from './components/Topbar/Topbar'
+import Subscriptions from './components/Subscriptions/Subscriptions'
+import './App.css'
 
 function App() {
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -12,9 +16,16 @@ function App() {
         <MainCard />
       </div>
       <div>
----
+        <Subscriptions />
       </div>
-      <ActionButton />
+      <AddSubscription
+        open={open}
+        setOpen={setOpen}
+      />
+      <ActionButton
+        // open={open}
+        setOpen={setOpen}
+      />
     </>
   )
 }

@@ -6,7 +6,7 @@ const MainCard = () => {
             <div className='card-container'>
                 <CardContent className='card-content'>
                     <Typography variant="h2" gutterBottom>
-                        500 INR
+                       ₹499
                     </Typography>
                     <Typography variant="h6"gutterBottom>
                         Per month

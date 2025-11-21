@@ -34,3 +34,14 @@ body {
   text-align: center;
   color:aliceblue;
 }
+
+.new-subs-dialog{
+    background-color: #121212 ;
+    padding: 0;
+    color: aliceblue;
+}
+.new-subs-dialog-content{
+  padding: 0;
+    background-color: #1e1e1e ;
+    color: aliceblue;
+}

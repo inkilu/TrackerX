@@ -1,0 +1,11 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.main-header-logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  vertical-align: 'middle';
+  margin-right: '0.5rem';
+  color: 'red';
+}

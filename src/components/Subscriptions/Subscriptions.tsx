@@ -6,7 +6,12 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { simpleIconCdn } from "../../utils/iconCDN";
 
-const Subscriptions = () => {
+type SubscriptionsProps = {
+    // viewOpen: boolean,
+    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Subscriptions = ({ setViewOpen }: SubscriptionsProps) => {
     const style = {
         p: 0,
         border: '1px solid',
@@ -16,12 +21,11 @@ const Subscriptions = () => {
         // paddingLeft: '4px',
         margin: '10px'
     };
-    // const icon: string = 'hi'
-    const icon: string = simpleIconCdn('netflix')
-    console.log(icon, 'icccccc')
+    const icon: string = 'hi'
+    // const icon: string = simpleIconCdn('netflix')
     return (
         <List sx={style} aria-label="mailbox folders">
-            <ListItem>
+            <ListItem onClick={()=>setViewOpen(true)}>
                 <Avatar alt="Netflix" sx={{ bgcolor: 'white', width: 36, height: 36 }}>
                     <img src={icon} width={'25px'} />
                 </Avatar>

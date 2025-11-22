@@ -24,9 +24,9 @@ const Transition = React.forwardRef(function Transition(
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-type AddSubscriptionProps = {
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+type ViewSubscriptionsProps = {
+    viewOpen: boolean,
+    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const style = {
@@ -69,10 +69,10 @@ const amountFieldStyle = {
 const days: number[] = Array.from({ length: 30 }, (_, i) => i + 1);
 const frequency: string[] = ['Day(s)', 'Week(s)', 'Month(s)', 'Year(s)'];
 
-const AddSubscription = ({ open, setOpen }: AddSubscriptionProps) => {
+const ViewSubscription = ({ viewOpen, setViewOpen }: ViewSubscriptionsProps) => {
     return (
         <div >
-            <Dialog open={open} onClose={() => setOpen(false)}
+            <Dialog open={viewOpen} onClose={() => setViewOpen(false)}
                 sx={{
                     marginTop: '206px',
                     marginLeft: '3px',
@@ -85,10 +85,10 @@ const AddSubscription = ({ open, setOpen }: AddSubscriptionProps) => {
                 slots={{
                     transition: Transition,
                 }}>
-                <DialogTitle className='new-subs-dialog' onClick={() => setOpen(false)}>
+                <DialogTitle className='new-subs-dialog' onClick={() => setViewOpen(false)}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div>
-                            New Subscription
+                            View / Edit Subscription
                         </div>
                         <div style={{ width: 24, height: 24, paddingTop: '1px' }}>
                             <CloseIcon sx={{ paddingTop: '3px' }} />
@@ -134,8 +134,12 @@ const AddSubscription = ({ open, setOpen }: AddSubscriptionProps) => {
                                 startAdornment={<InputAdornment position="start">₹</InputAdornment>}
                             />
                         </ListItem>
-                        <ListItem sx={{marginTop:'16px'}}>
-                                 <Button variant="contained" fullWidth sx={{background: 'linear-gradient(140deg, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%)'}}>Add</Button>
+                        <ListItem sx={{ marginTop: '16px' }}>
+                            <Button variant="contained" fullWidth
+                                sx={{ background: 'linear-gradient(140deg, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%)' }}
+                            >
+                                Save
+                            </Button>
                         </ListItem>
                     </List>
                 </DialogContent>
@@ -144,4 +148,4 @@ const AddSubscription = ({ open, setOpen }: AddSubscriptionProps) => {
     )
 }
 
-export default AddSubscription
+export default ViewSubscription

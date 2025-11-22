@@ -16,8 +16,8 @@ const Subscriptions = () => {
         // paddingLeft: '4px',
         margin: '10px'
     };
-    const icon: string = 'hi'
-    // const icon: string = simpleIconCdn('netflix')
+    // const icon: string = 'hi'
+    const icon: string = simpleIconCdn('netflix')
     console.log(icon, 'icccccc')
     return (
         <List sx={style} aria-label="mailbox folders">

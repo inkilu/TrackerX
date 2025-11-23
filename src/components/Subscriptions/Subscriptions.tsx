@@ -21,8 +21,8 @@ const Subscriptions = ({ setViewOpen }: SubscriptionsProps) => {
         // paddingLeft: '4px',
         margin: '10px'
     };
-    const icon: string = 'hi'
-    // const icon: string = simpleIconCdn('netflix')
+    // const icon: string = 'hi'
+    const icon: string = simpleIconCdn('netflix')
     return (
         <List sx={style} aria-label="mailbox folders">
             <ListItem onClick={()=>setViewOpen(true)}>

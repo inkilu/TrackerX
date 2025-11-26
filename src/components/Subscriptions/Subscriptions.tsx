@@ -1,3 +1,4 @@
+import React, { use } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -8,10 +9,14 @@ import { simpleIconCdn } from "../../utils/iconCDN";
 
 type SubscriptionsProps = {
     // viewOpen: boolean,
-    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>
+    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    getAllSubscriptionsPromise: Promise<any> | undefined
 }
 
-const Subscriptions = ({ setViewOpen }: SubscriptionsProps) => {
+const Subscriptions = ({ setViewOpen, getAllSubscriptionsPromise }: SubscriptionsProps) => {
+    
+    const availableSubs = getAllSubscriptionsPromise ? use(getAllSubscriptionsPromise) : undefined
+
     const style = {
         p: 0,
         border: '1px solid',
@@ -21,11 +26,11 @@ const Subscriptions = ({ setViewOpen }: SubscriptionsProps) => {
         // paddingLeft: '4px',
         margin: '10px'
     };
-    // const icon: string = 'hi'
+
     const icon: string = simpleIconCdn('netflix')
     return (
         <List sx={style} aria-label="mailbox folders">
-            <ListItem onClick={()=>setViewOpen(true)}>
+            <ListItem onClick={() => setViewOpen(true)}>
                 <Avatar alt="Netflix" sx={{ bgcolor: 'white', width: 36, height: 36 }}>
                     <img src={icon} width={'25px'} />
                 </Avatar>

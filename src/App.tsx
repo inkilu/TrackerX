@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense, useMemo } from 'react'
 import ActionButton from './components/ActionButton/ActionButton'
 import AddSubscription from './components/AddSubscriprion/AddSubscription'
 import ViewSubscription from './components/ViewSubscription/ViewSubscription'
@@ -12,6 +12,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 import { auth, googleProvider } from './utils/firebase';
 import './App.css'
+// API Calls
+import { getAllSubscriptions } from '../src/services/trackerx.services'
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -20,12 +22,16 @@ function App() {
   const [profileOpen, setProfileOpen] = useState(false);
   const [loading, setLoading] = useState(false)
 
+  // APIs Promises
+
+  const getAllSubscriptionsPromise = useMemo(() => {
+    return user?.getIdToken().then(token => getAllSubscriptions(token))
+  }, [user])
+
   useEffect(() => {
-    // This listener runs immediately on load to check for existing sessions
     setLoading(true)
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // 2. Once Firebase responds (either with a user or null), stop loading
       setLoading(false);
     });
 
@@ -69,12 +75,15 @@ function App() {
         />
         <MainCard />
       </div>
-      <div>
-        <Subscriptions
-          // viewOpen={viewOpen}
-          setViewOpen={setViewOpen}
-        />
-      </div>
+      <Suspense fallback={'Loaffffff'}>
+        <div>
+          <Subscriptions
+            getAllSubscriptionsPromise={getAllSubscriptionsPromise}
+            // viewOpen={viewOpen}
+            setViewOpen={setViewOpen}
+          />
+        </div>
+      </Suspense>
       <ViewSubscription
         viewOpen={viewOpen}
         setViewOpen={setViewOpen}

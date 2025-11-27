@@ -14,9 +14,8 @@ type SubscriptionsProps = {
 }
 
 const Subscriptions = ({ setViewOpen, getAllSubscriptionsPromise }: SubscriptionsProps) => {
-    
     const availableSubs = getAllSubscriptionsPromise ? use(getAllSubscriptionsPromise) : undefined
-
+    console.log(availableSubs, 'availsubs')
     const style = {
         p: 0,
         border: '1px solid',

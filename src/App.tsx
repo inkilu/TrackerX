@@ -10,6 +10,7 @@ import Profile from './components/Profile/Profile'
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
+import MainLoader from './components/Loaders/MainLoader'
 import { auth, googleProvider } from './utils/firebase';
 import './App.css'
 // API Calls
@@ -22,6 +23,14 @@ function App() {
   const [profileOpen, setProfileOpen] = useState(false);
   const [loading, setLoading] = useState(false)
 
+  const loaderStyles = {
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    backgroundColor: '#121212'
+  }
   // APIs Promises
 
   const getAllSubscriptionsPromise = useMemo(() => {
@@ -46,9 +55,9 @@ function App() {
 
   if (loading) {
     return (
-      <div style={{ width: 100, height: 100 }}>
-        Loading...
-      </div>
+      <div style={loaderStyles}>
+        <MainLoader message={'Loading'} />
+      </div >
     );
   }
 
@@ -75,7 +84,13 @@ function App() {
         />
         <MainCard />
       </div>
-      <Suspense fallback={'Loaffffff'}>
+      <Suspense
+        fallback={
+          <div style={{ ...loaderStyles, height: '50px',width:'100px',margin:'auto',marginTop:'9rem' }}>
+            <MainLoader message={'Fetching data'} />
+          </div>
+        }
+      >
         <div>
           <Subscriptions
             getAllSubscriptionsPromise={getAllSubscriptionsPromise}

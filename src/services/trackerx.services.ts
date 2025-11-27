@@ -1,7 +1,8 @@
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const getAllSubscriptions = async (token: string) => {
     try {
-        const response = await fetch('/api/subscriptions?page=1&limit=100', {
+        const response = await fetch(`${baseURL}/api/subscriptions?page=1&limit=100`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

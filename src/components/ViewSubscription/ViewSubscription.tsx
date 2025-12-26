@@ -26,7 +26,21 @@ const Transition = React.forwardRef(function Transition(
 
 type ViewSubscriptionsProps = {
     viewOpen: boolean,
-    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>
+    setViewOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    editData: {
+        _id: string,
+        "userId": string,
+        "name": string,
+        "description": string,
+        "firstDate": string,
+        "repeatsEvery": number,
+        "repeatsUnit": string,
+        "amount": number,
+        "currency": string,
+        "createdAt": string,
+        "updatedAt": string,
+        "__v": number
+    }
 }
 
 const style = {
@@ -69,7 +83,7 @@ const amountFieldStyle = {
 const days: number[] = Array.from({ length: 30 }, (_, i) => i + 1);
 const frequency: string[] = ['Day(s)', 'Week(s)', 'Month(s)', 'Year(s)'];
 
-const ViewSubscription = ({ viewOpen, setViewOpen }: ViewSubscriptionsProps) => {
+const ViewSubscription = ({ viewOpen, setViewOpen, editData }: ViewSubscriptionsProps) => {
     return (
         <div >
             <Dialog open={viewOpen} onClose={() => setViewOpen(false)}
@@ -99,26 +113,26 @@ const ViewSubscription = ({ viewOpen, setViewOpen }: ViewSubscriptionsProps) => 
                     <List sx={style} aria-label="mailbox folders">
                         <ListItem>
                             <ListItemText primary="Name" />
-                            <TextField size='small' sx={textFieldStyle} />
+                            <TextField size='small' sx={textFieldStyle} value={editData?.name || ''} />
                         </ListItem>
                         <ListItem>
                             <ListItemText primary="Description" />
-                            <TextField size='small' sx={textFieldStyle} />
+                            <TextField size='small' sx={textFieldStyle} value={editData?.description || ''} />
                         </ListItem>
                         <ListItem>
                             <ListItemText primary="First Date" />
-                            <TextField size='small' type="date" sx={{ ...textFieldStyle, width: '192px' }} />
+                            <TextField size='small' type="date" sx={{ ...textFieldStyle, width: '192px' }} value={editData?.firstDate || ''} />
                         </ListItem>
                         <ListItem>
                             <ListItemText primary="Repeats Every" />
-                            <TextField size='small' select sx={{ ...textFieldStyle, width: '90px', marginRight: '8px' }} >
+                            <TextField size='small' select sx={{ ...textFieldStyle, width: '90px', marginRight: '8px' }} value={editData?.repeatsEvery || ''}>
                                 {days.map(day => (
                                     <MenuItem key={day} value={day} sx={{ ...textFieldStyle, width: '90px' }}>
                                         {day}
                                     </MenuItem>
                                 ))}
                             </TextField>
-                            <TextField size='small' select sx={{ ...textFieldStyle, width: '115px' }}>
+                            <TextField size='small' select sx={{ ...textFieldStyle, width: '115px' }} value={editData?.repeatsUnit || ''}>
                                 {frequency.map(day => (
                                     <MenuItem key={day} value={day} sx={{ ...textFieldStyle, width: '90px' }}>
                                         {day}
@@ -129,6 +143,7 @@ const ViewSubscription = ({ viewOpen, setViewOpen }: ViewSubscriptionsProps) => 
                         <ListItem>
                             <ListItemText primary="Amount" />
                             <OutlinedInput
+                                value={editData?.amount || ''}
                                 sx={amountFieldStyle}
                                 type='Number'
                                 startAdornment={<InputAdornment position="start">₹</InputAdornment>}

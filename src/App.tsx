@@ -20,6 +20,20 @@ function App() {
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [viewOpen, setViewOpen] = useState(false);
+  const [editData, setEditData] = useState({
+    _id: '',
+    "userId": '',
+    "name": '',
+    "description": '',
+    "firstDate": '',
+    "repeatsEvery": 0,
+    "repeatsUnit": '',
+    "amount": 0,
+    "currency": '',
+    "createdAt": '',
+    "updatedAt": '',
+    "__v": 0
+  });
   const [profileOpen, setProfileOpen] = useState(false);
   const [loading, setLoading] = useState(false)
 
@@ -86,7 +100,7 @@ function App() {
       </div>
       <Suspense
         fallback={
-          <div style={{ ...loaderStyles, height: '50px',width:'100px',margin:'auto',marginTop:'9rem' }}>
+          <div style={{ ...loaderStyles, height: '50px', width: '100px', margin: 'auto', marginTop: '9rem' }}>
             <MainLoader message={'Fetching data'} />
           </div>
         }
@@ -95,12 +109,14 @@ function App() {
           <Subscriptions
             getAllSubscriptionsPromise={getAllSubscriptionsPromise}
             // viewOpen={viewOpen}
+            setEditData={setEditData}
             setViewOpen={setViewOpen}
           />
         </div>
       </Suspense>
       <ViewSubscription
         viewOpen={viewOpen}
+        editData={editData}
         setViewOpen={setViewOpen}
       />
       <AddSubscription
